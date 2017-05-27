@@ -64,7 +64,7 @@ EntryPoint:
 	nop
 ;	nop		; SizeOfUninitializedData
 ;	db 68h		; push 0
-	db 5h		; add eax,0
+	db 5h		; add eax,0    this instruction zeros  high dword of rax
 
 	dd 0		; AddressOfEntryPoint
 
@@ -98,7 +98,7 @@ EntryPoint:
 	nop		; MinorImageVersion
 
 
-	; below add eax, xx xx xx 00 h
+	; below add eax, xx xx xx 00 h        this instruction zeros  high dword of rax 
 	dw 5		; >3.1 or 4  MajorSubsystemVersion
 	dw 0h		; MinorSubsystemVersion
 	
@@ -111,88 +111,99 @@ EntryPoint:
 ;	dd 208h;077000000h	; SizeOfImage
  	nop
 	nop
-	db 0ebh db 0; jmp next inst
+	db 0ebh 
+	db 0; jmp next inst
 
 
 ;	dd 200h ;076ffffffh; 0200h	; SizeOfHeaders  !!!! make it 0 to run on w8???
  	nop
 	nop
-	db 0ebh db 0; jmp next inst
+	db 4h; 		0ebh 
+	db 0; add al,0		jmp next inst
 
 
 	nop
 	nop
 	nop
-	nop	; CheckSum
+	db 05h	; CheckSum		add eax,
 
 	dw 0002h 	; Subsystem	2-GUI 3-CUI
 	dw 0		; DllCharacteristics
+	
 
-	dq 1000h	; SizeOfStackReserve	; PE32+		; dd in PE32
-	dq 1000h	; SizeOfStackCommit	; PE32+
-	dq 10000h	; SizeOfHeapReserve	; PE32+
-	dq 0		; SizeOfHeapCommit	; PE32+
+	dq 05909090h;1000h	; SizeOfStackReserve	; PE32+		; dd in PE32
+	dq 05909090h;1000h	; SizeOfStackCommit	; PE32+
+	dq 05909090h;10000h	; SizeOfHeapReserve	; PE32+
+	dq 05909090h;0		; SizeOfHeapCommit	; PE32+
 
-	dd 0		;! LoaderFlags		;	reserved, must be zero
-	dd 16; 0ffffffffh ; was 0		; NumberofRvaAndSizes	
+	
+;	dd 0		;! LoaderFlags		;	reserved, must be zero
+ 	nop
+	nop
+	nop	
+	db 05h
+
+
+	dd 0; 0ffffffffh ; was 0		; NumberofRvaAndSizes	
 
 
 
 ;Cont:
 
-	dd 0;0ffffffffh	; Export Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Export Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0		; Import Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0		; Import Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0		; Resource Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0		; Resource Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; Exception Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Exception Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; Security Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Security Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; Base Relocation Table Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Base Relocation Table Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; Debug Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Debug Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; Architecture Specific Data Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Architecture Specific Data Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; RVA of GlobalPtr Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; RVA of GlobalPtr Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0		; TLS Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0		; TLS Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0		; Load Configuration Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0		; Load Configuration Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0		; Bound Import Directory Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;	dd 0		; Bound Import Directory Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; Import Address Table Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Import Address Table Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh	; Delay Load Import Descriptors Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0;0ffffffffh	; Delay Load Import Descriptors Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0		; COM runtime Descriptors Address and Size
-	dd 0;0ffffffffh
+	dd 90909090h ;dd 0		; COM runtime Descriptors Address and Size
+	dd 90909090h ;dd 0;0ffffffffh
 
-	dd 0;0ffffffffh;0		; reserved "must be 0"
-	dd 0;0ffffffffh
-
+	;dd 90909090h ;dd 0;0ffffffffh;0		; reserved "must be 0"
+	;dd 0;0ffffffffh
+	nop
+	nop
 
 ;	times 122 db 90h
 ;	times 122 db 0h
 ;Cont:
-;	push r10   	; ExitProcess
-;	push 2ah
-;	pop rax
-;	ret
+	push r10   	; ExitProcess
+	push 2ah
+	pop rax
+	ret
