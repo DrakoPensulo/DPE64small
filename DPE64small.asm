@@ -3,34 +3,23 @@ use64
 
 
 EntryPoint:
-	db 'MZ' ; pop r10 ; r10 <- ExitProcess Address from stack ; 
+	db 'MZ'		; pop r10 			; r10 <- ExitProcess Address from stack
 
-
+			; mov rax, 0001866400004550h
 	dw 0B848h	; mov rax
 	dd 00004550h	; Signature PE\0\0
 	dw 8664h	; Machine
 	dw 0001h	; NumberOfSections
-;	mov rax,0001866400004550h;     
 
-
-;	push r10   	; ExitProcess
-;	push 2ah
-;	pop rax
-;	ret
-
-
-;	jmp Cont
 	nop
 	nop
 	nop
 	nop		; TimeDateStamp
 
-
 	nop
 	nop
 	nop
 	nop		; PointerToSymbolTable
-
 
 	nop
 	nop
@@ -38,13 +27,12 @@ EntryPoint:
 	nop		; NumberOfSymbols
 
 
-	nop	; SizeOfOptionalHeader - multiple of 8 not too large not too small
-	db 05h
+	nop		
+	db 05h		; SizeOfOptionalHeader		; multiple of 8 not too large not too small
 
-	dw 002fh	; Characteristics  must be bit 1=1 bit 13=0
+			; add eax, 20B002F		; zeros the high dword of rax
+	dw 002fh	; Characteristics		; must be bit 1=1 bit 13=0
 	dw 020Bh	; PE32+	Magic
-	; add eax,20B002F
-
 
 	nop		; MajorLinkerVersion
 	nop		; MinorLinkerVersion
@@ -61,39 +49,35 @@ EntryPoint:
 
 	nop
 	nop
-	nop
-;	nop		; SizeOfUninitializedData
-;	db 68h		; push 0
-	db 5h		; add eax,0    this instruction zeros  high dword of rax
-
+	nop             ; SizeOfUninitializedData
+	db 5h		
+			; add eax, 0			; zeros the high dword of rax
 	dd 0		; AddressOfEntryPoint
 
 	nop
 	nop
-;	nop
-;	nop		; BaseOfCode
-	dw 0B848h	; mov rax
+	dw 0B848h	; BaseOfCode
+                        ; mov rax, 0000000100000000h	; rax <- EntryPoint
 
+	dq 0000000100000000h	; ImageBase		; must be multiple of 64k
 
-	dq 0000000100000000h	; ImageBase	; PE32+  multiple of 64k according to documentation
-;	dd BaseOfData	; PE32
-;	dd ImageBase	; PE32
+			; add al, 0
+                        ; add byte ptr ds:[rax],al
+	dd 4		; SectionAlignment	; e_lfanew ;PE hdr start offset
 
-	; below add al,0 ; add byte ptr ds:[rax],al
-	dd 4	; SectionAlignment	; e_lfanew ;PE hdr start offset
-	dd 4	; FileAlignment
-
-	nop
-	nop
-;	dw 1	;! MajorOperatingSystemVersiom
+			; add al, 0
+                        ; add byte ptr ds:[rax],al
+	dd 4		; FileAlignment
 
 	nop
-	nop
-;	dw 0	;! MinorOperatingSystemVersion
+	nop		; MajorOperatingSystemVersiom
 
+	nop
+	nop		; MinorOperatingSystemVersion
 
 	nop
 	nop		; MajorImageVersion
+
 	nop
 	nop		; MinorImageVersion
 
