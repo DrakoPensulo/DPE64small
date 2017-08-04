@@ -28,7 +28,7 @@ EntryPoint:
 
 
 	nop		
-	db 05h		; SizeOfOptionalHeader		; multiple of 8 not too large not too small
+	db 05h		; SizeOfOptionalHeader		; must be multiple of 8 not too large not too small
 
 			; add eax, 20B002F		; zeros the high dword of rax
 	dw 002fh	; Characteristics		; must be bit 1=1 bit 13=0
@@ -115,25 +115,25 @@ EntryPoint:
 	nop
 	nop
 	db 05h	        ; add eax, 0	
-	dd 0		; SizeOfStackReserve dq 05909090h	; upper dword has to be 0, MSB of lower dwors has to be small
+	dd 0		; SizeOfStackReserve dq 05909090h	; upper dword has to be 0, MSB of lower dword has to be small
 
 	nop
 	nop
 	nop
 	db 05h	        ; add eax, 0	
-	dd 0		; SizeOfStackCommit dq 05909090h	; upper dword has to be 0, MSB of lower dwors has to be small
+	dd 0		; SizeOfStackCommit dq 05909090h	; upper dword has to be 0, MSB of lower dword has to be small
 
 	nop
 	nop
 	nop
 	db 05h	        ; add eax, 0	
-	dd 0		; SizeOfHeapReserve dq 05909090h	; upper dword has to be 0, MSB of lower dwors has to be small
+	dd 0		; SizeOfHeapReserve dq 05909090h	; upper dword has to be 0, MSB of lower dword has to be small
 
 	nop
 	nop
 	nop
 	db 05h	        ; add eax, 0	
-	dd 0		; SizeOfHeapCommit dq 05909090h	; upper dword has to be 0, MSB of lower dwors has to be small
+	dd 0		; SizeOfHeapCommit dq 05909090h	; upper dword has to be 0, MSB of lower dword has to be small
 
 	
  	nop
