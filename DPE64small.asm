@@ -1,3 +1,21 @@
+; DPE64small.asm   Aug 04, 2017 (c) DrakoPensulo
+; A smallest PE32+ executable (x64) - every byte executed
+; 
+; Properties:
+;  - Windows Vista/7/8/10 compatibile
+;  - Size: 268 bytes
+;  - Every byte executed
+;  - No sections
+;  - No Data Directories (in particular no imports)
+;  - Null Entrypoint
+;
+;
+;
+; Compile using FASM (https://flatassembler.net)  command line: fasm.exe DPE64small.asm
+;
+;
+;
+
 format binary as 'exe' 
 use64 
 
@@ -133,7 +151,7 @@ EntryPoint:
 	nop
 	nop
 	db 05h	        ; add eax, 0	
-	dd 0		; SizeOfHeapCommit dq 05909090h	; upper dword has to be 0, MSB of lower dword has to be small
+	dd 0		; SizeOfHeapCommit dq 05909090h		; upper dword has to be 0, MSB of lower dword has to be small
 
 	
  	nop
