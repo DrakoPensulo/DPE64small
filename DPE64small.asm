@@ -4,7 +4,7 @@
 ; Features:
 ;  - Windows Vista/7/8/10 compatibile
 ;  - Size: 268 bytes (an executable file on x64 Windows cannot be smaller)
-;  - Every byte executes
+;  - Every byte executed
 ;  - No sections
 ;  - No Data Directories (in particular no imports and no TLS callbacks)
 ;  - Null Entrypoint
