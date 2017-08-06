@@ -1,4 +1,4 @@
-; DPE64small.asm   Aug 04, 2017 (c) DrakoPensulo
+; DPE64small.asm   Aug 05, 2017 (c) DrakoPensulo
 ; A smallest PE32+ executable (x64) - every byte executed
 ; 
 ; Features:
@@ -15,8 +15,8 @@
 ;
 ;
 ;
-; GitHub:
-; Blog post:
+; GitHub: https://github.com/DrakoPensulo/DPE64small
+; Blog post: https://drakopensulo.wordpress.com/2017/08/06/smallest-pe-executable-x64-with-every-byte-executed/
 ;
 
 format binary as 'exe' 
