@@ -1,19 +1,22 @@
 ; DPE64small.asm   Aug 04, 2017 (c) DrakoPensulo
 ; A smallest PE32+ executable (x64) - every byte executed
 ; 
-; Properties:
+; Features:
 ;  - Windows Vista/7/8/10 compatibile
-;  - Size: 268 bytes
-;  - Every byte executed
+;  - Size: 268 bytes (an executable file on x64 Windows cannot be smaller)
+;  - Every byte executes
 ;  - No sections
-;  - No Data Directories (in particular no imports)
+;  - No Data Directories (in particular no imports and no TLS callbacks)
 ;  - Null Entrypoint
-;
+;  - Exits with code 0x2a (this executable does nothing else than that)
 ;
 ;
 ; Compile using FASM (https://flatassembler.net)  command line: fasm.exe DPE64small.asm
 ;
 ;
+;
+; GitHub:
+; Blog post:
 ;
 
 format binary as 'exe' 
@@ -312,5 +315,5 @@ EntryPoint:
 	nop
 	push r10   	
 	push 2ah
-	pop rax
-	ret	; Reserved Descriptor
+	pop rax                                 ; rax <- Exit code
+	ret	; Reserved Descriptor		;This instruction terminates the main thread  (and therefore the whole process if there is no unterminated thread)
