@@ -1,1 +1,1 @@
-fasm.exe DPE64small.exe
+fasm.exe DPE64small.asm

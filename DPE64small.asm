@@ -2,7 +2,7 @@
 ; A smallest PE32+ executable (x64) - every byte executed
 ; 
 ; Features:
-;  - Windows Vista/7/8/10 compatibile
+;  - Windows 7/8/10 compatibile
 ;  - Size: 268 bytes (an executable file on x64 Windows cannot be smaller)
 ;  - Every byte executed
 ;  - No sections
@@ -18,6 +18,7 @@
 ; GitHub: https://github.com/DrakoPensulo/DPE64small
 ; Blog post: https://drakopensulo.wordpress.com/2017/08/06/smallest-pe-executable-x64-with-every-byte-executed/
 ;
+; Update Aug 17, 2018
 
 format binary as 'exe' 
 use64 
