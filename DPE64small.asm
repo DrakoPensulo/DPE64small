@@ -2,7 +2,7 @@
 ; A smallest PE32+ executable (x64) - every byte executed
 ; 
 ; Features:
-;  - Windows Vista/7/8/10 compatibile
+;  - Windows Vista/7/8/10 compatible
 ;  - Size: 268 bytes (an executable file on x64 Windows cannot be smaller)
 ;  - Every byte executed
 ;  - No sections
